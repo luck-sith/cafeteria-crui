@@ -1,0 +1,60 @@
+### Bienvenida
+GET http://localhost:3000/
+
+### Listar todos los productos
+GET http://localhost:3000/api/productos
+
+### Prueba 1a: producto existente (espera 200)
+GET http://localhost:3000/api/productos/1
+
+### Prueba 1b: producto inexistente (espera 404)
+GET http://localhost:3000/api/productos/99
+
+### Prueba 2: crear producto valido (espera 201)
+POST http://localhost:3000/api/productos
+Content-Type: application/json
+
+{
+  "nombre": "Submarino",
+  "precio": 2200,
+  "categoria": "bebida"
+}
+
+### Prueba 3a: crear con datos invalidos (espera 400)
+POST http://localhost:3000/api/productos
+Content-Type: application/json
+
+{
+  "nombre": "",
+  "precio": -5,
+  "categoria": "bebida"
+}
+
+### Prueba 3b: precio enviado como texto (espera 400)
+POST http://localhost:3000/api/productos
+Content-Type: application/json
+
+{
+  "nombre": "Jugo de naranja",
+  "precio": "1500",
+  "categoria": "bebida"
+}
+
+### Prueba 4: modificar el producto 2 (espera 200)
+PUT http://localhost:3000/api/productos/2
+Content-Type: application/json
+
+{
+  "nombre": "Medialuna de manteca",
+  "precio": 1000,
+  "categoria": "comida"
+}
+
+### Prueba 4b: verificar que cambio (espera 200)
+GET http://localhost:3000/api/productos/2
+
+### Prueba 5a: eliminar el producto 3 (espera 200)
+DELETE http://localhost:3000/api/productos/3
+
+### Prueba 5b: verificar que ya no existe (espera 404)
+GET http://localhost:3000/api/productos/3
